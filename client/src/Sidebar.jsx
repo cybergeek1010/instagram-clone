@@ -4,7 +4,7 @@ function Sidebar() {
   return (
     <div className='m-3'>
         <div className='d-flex flex-column gap-3'>
-            <img className='logo-text' src="src\assets\instagramtext.webp" alt="" />
+            <img className='logo-text' src="src\assets\instatext.webp" alt="" />
             <div className=''><i class="bi bi-house-door"></i>Home</div>
             <div className=''><i class="bi bi-search"></i>Search</div>
             <div className=''><i class="bi bi-compass"></i>Explore</div>
