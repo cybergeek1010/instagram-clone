@@ -31,7 +31,7 @@ function Suggestions() {
     <div className='p-3'>
         <div className='d-flex align-items-centre justify-content-between mb-4'>
             <div className='d-flex align-items-center'>
-                <img src="hrrps://i.pravatar.cc/150?img=5" alt="" style={{width:"50px",height:"50px",borderRadius:"50%"}}/>
+                <img src="https://i.pravatar.cc/150?img=5" alt="" style={{width:"50px",height:"50px",borderRadius:"50%"}}/>
                 <div className='ms-3'>
                     <h6 className='mb-0'>arshad</h6>
                     <small className='text-secondary'> developer</small>
