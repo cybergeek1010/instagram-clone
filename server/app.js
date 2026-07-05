@@ -5,10 +5,13 @@ const app = express();
 const Post=require("./models/posts.js")
 const postRoutes = require("./routes/postroutes.js")
 const storyRoutes = require("./routes/storyroutes");
+const suggestionRoutes = require("./routes/suggestionroutes.js");
+const suggestion = require("./models/suggestion.js");
 app.use(cors());
 app.use(express.json());
 app.use(postRoutes)
 app.use("/stories",storyRoutes)
+app.use("/suggestions",suggestionRoutes)
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("database connected");
