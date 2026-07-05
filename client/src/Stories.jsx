@@ -1,52 +1,60 @@
-import React from 'react'
-const stories = [
-  {
-    id: 1,
-    username: "john_doe",
-    image: "https://i.pravatar.cc/150?img=1",
-  },
-  {
-    id: 2,
-    username: "sarah",
-    image: "https://i.pravatar.cc/150?img=2",
-  },
-  {
-    id: 3,
-    username: "alex",
-    image: "https://i.pravatar.cc/150?img=3",
-  },
-  {
-    id: 4,
-    username: "emma",
-    image: "https://i.pravatar.cc/150?img=4",
-  },
-  {
-    id: 5,
-    username: "david",
-    image: "https://i.pravatar.cc/150?img=6",
-  },
-  {
-    id: 6,
-    username: "jack",
-    image: "https://i.pravatar.cc/150?img=7",
-  },
-  {
-    id: 7,
-    username: "john_doe",
-    image: "https://i.pravatar.cc/150?img=8",
-  },
-  {
-    id: 8,
-    username: "john_doe",
-    image: "https://i.pravatar.cc/150?img=9",
-  },
-  {
-    id: 9,
-    username: "john_doe",
-    image: "https://i.pravatar.cc/150?img=10",
-  },
-];
+import React, { useEffect, useState } from 'react';
+import { getStories } from './services/api';
+// const stories = [
+//   {
+//     id: 1,
+//     username: "john_doe",
+//     image: "https://i.pravatar.cc/150?img=1",
+//   },
+//   {
+//     id: 2,
+//     username: "sarah",
+//     image: "https://i.pravatar.cc/150?img=2",
+//   },
+//   {
+//     id: 3,
+//     username: "alex",
+//     image: "https://i.pravatar.cc/150?img=3",
+//   },
+//   {
+//     id: 4,
+//     username: "emma",
+//     image: "https://i.pravatar.cc/150?img=4",
+//   },
+//   {
+//     id: 5,
+//     username: "david",
+//     image: "https://i.pravatar.cc/150?img=6",
+//   },
+//   {
+//     id: 6,
+//     username: "jack",
+//     image: "https://i.pravatar.cc/150?img=7",
+//   },
+//   {
+//     id: 7,
+//     username: "john_doe",
+//     image: "https://i.pravatar.cc/150?img=8",
+//   },
+//   {
+//     id: 8,
+//     username: "john_doe",
+//     image: "https://i.pravatar.cc/150?img=9",
+//   },
+//   {
+//     id: 9,
+//     username: "john_doe",
+//     image: "https://i.pravatar.cc/150?img=10",
+//   },
+// ];
+
 function Stories() {
+const [stories,setStories]=useState([]);
+useEffect(()=>{
+  getStories()
+  .then((res)=>setStories(res.data))
+  .catch((err)=>console.log(err));
+},[]);
   return (
     <div className='card p-3 mb-4'>
       <div className='d-flex' style={{overflowX:"auto",scrollbarWidth:"5px",gap:"20px",}}>
