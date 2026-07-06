@@ -21,6 +21,21 @@ exports.likePost=async(req,res)=>{
         res.status(500).json({message:err.message});
     }
 }
+exports.addComment=async(req,res)=>{
+    try{
+        const post = await Post.findById(req.params.id);
+        post.comments.push({
+            username:req.body.username,
+            text:req.body.text
+        });
+        await post.save();
+        res.json(post);
+        
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+}
 
 exports.createPost = async (req,res)=>{
     try{
