@@ -9,6 +9,19 @@ exports.getPosts = async(req,res)=>{
             });
         }
     }
+
+exports.likePost=async(req,res)=>{
+    try{
+        const{id}=req.params;
+        const post= await Post.findById(id);
+        post.likes+=1;
+        await post.save();
+        res.json(post);
+    }catch(err){
+        res.status(500).json({message:err.message});
+    }
+}
+
 exports.createPost = async (req,res)=>{
     try{
         const{ username,profileImage,postImage,caption}=req.body;
