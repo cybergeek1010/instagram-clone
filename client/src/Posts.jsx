@@ -1,8 +1,19 @@
 import React,{useEffect,useState}from 'react'
-import{getPosts} from "./services/api";
+import{getPosts,likePost} from "./services/api";
 
 function Posts() {
     const[posts,setPosts]=useState([]);
+    const[likedposts,setLikedPosts]=useState([]);
+    const handleLike=async(id)=>{
+        try{
+            await likePost(id);
+            const res = await getPosts();
+            setPosts(res.data);
+            setLikedPosts((prev)=>[...prev,id])
+        } catch(err){
+            console.log(err);
+        }
+    };
 
     useEffect(()=>{
         fetchPosts();
@@ -32,7 +43,7 @@ function Posts() {
                         <img src={post.postImage} alt="" style={{width:"100%",maxHeight:"400px",objectFit:"cover"}} className='img-fluid'/>
                          <div className="d-flex fs-4 mt-3 px-0 ">
 
-                            <i className="bi bi-heart me-3"></i>
+                            <i className={likedposts.includes(post._id)?"bi bi-heart-fill text-danger":"bi bi-heart"} onClick={()=>handleLike(post._id)}></i>
 
                             <i className="bi bi-chat me-3"></i>
 
