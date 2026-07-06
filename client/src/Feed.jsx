@@ -2,11 +2,14 @@ import React from 'react'
 import Stories from './Stories'
 import Posts from './Posts'
 
-function Feed() {
+function Feed({posts,setPosts}) {
   return (
     <div>
         <div><Stories/></div>
-        <div><Posts/></div>
+        <div><Posts
+        posts={posts}
+        setPosts={setPosts}
+        /></div>
     </div>
   )
 }

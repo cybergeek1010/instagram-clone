@@ -1,8 +1,8 @@
 import React,{useEffect,useState}from 'react'
 import{getPosts,likePost,addComment} from "./services/api";
 
-function Posts() {
-    const[posts,setPosts]=useState([]);
+function Posts({posts,setPosts}) {
+    // const[posts,setPosts]=useState([]);
     const[likedposts,setLikedPosts]=useState([]);
     const[comment,setComment]=useState([]);
     const handleLike=async(id)=>{
@@ -25,18 +25,18 @@ function Posts() {
         setComment("");
     };
 
-    useEffect(()=>{
-        fetchPosts();
-    },[]);
-    async function fetchPosts(){
-        try{
-            const response = await getPosts();
-            console.log(response.data);
-            setPosts(response.data);
-        } catch(error){
-            console.log(error);
-        }
-    }
+    // useEffect(()=>{
+    //     fetchPosts();
+    // },[]);
+    // async function fetchPosts(){
+    //     try{
+    //         const response = await getPosts();
+    //         console.log(response.data);
+    //         setPosts(response.data);
+    //     } catch(error){
+    //         console.log(error);
+    //     }
+    // }
 
   return (
     <div className='txt-color card shadow-sm mb-4 border-0 rounded-4'>
@@ -69,7 +69,7 @@ function Posts() {
 
                              ))}
                             <input type="text" placeholder='add a comment' value={comment} onChange={(e)=>setComment(e.target.value)}/>
-                            <button onClick={()=>handleComment(post._id)}>Post</button>
+                            <button onClick={()=>handleComment(post._id)} className='btn btn-primary'>Post</button>
                         </div>
                         
 </div>
