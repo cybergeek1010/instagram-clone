@@ -2,7 +2,7 @@ import { useState } from "react";
 import {createPost} from "./services/api"
 import React from 'react'
 
-function CreatePost() {
+function CreatePost({setPosts}) {
     const[username,setUsername]=useState("");
     const[profileImage,setProfileImage]=useState("");
     const[postImage,setPostImage]=useState("");
@@ -16,7 +16,8 @@ function CreatePost() {
                 caption,
             };
             const res = await createPost(data);
-            console.log(res.data);
+            setPosts((prev)=>[res.data,...prev])
+            // console.log(res.data);
             alert("post created!");
             setUsername("");
             setProfileImage("");

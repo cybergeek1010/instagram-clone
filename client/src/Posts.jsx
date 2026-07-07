@@ -50,7 +50,7 @@ function Posts({posts,setPosts}) {
                                 {post.username}
                             </h6>
                         </div>
-                        <img src={post.postImage} alt="" style={{width:"100%",maxHeight:"400px",objectFit:"cover"}} className='img-fluid'/>
+                        <img src={post.postImage} alt="" className='img-fluid' style={{width:"100%",height:"450px",objectFit:"cover"}} />
                          <div className="d-flex fs-4 mt-3 px-0 ">
 
                             <i className={likedposts.includes(post._id)?"bi bi-heart-fill text-danger":"bi bi-heart"} onClick={()=>handleLike(post._id)}></i>
