@@ -4,7 +4,7 @@ import{getPosts,likePost,addComment} from "./services/api";
 function Posts({posts,setPosts}) {
     // const[posts,setPosts]=useState([]);
     const[likedposts,setLikedPosts]=useState([]);
-    const[comment,setComment]=useState([]);
+    const[comment,setComment]=useState("");
     const handleLike=async(id)=>{
         try{
             await likePost(id);
