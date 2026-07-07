@@ -29,12 +29,12 @@ import { getSuggestions } from "./services/api.js";
 
 function Suggestions() {
     const [users,setUsers]=useState([]);
-    useEffect(()=>{
-        getSuggestions()
-        .then((res)=> setUsers(res.data))
-        .catch(console.error);
-    },[])
-  return (
+        useEffect(()=>{
+            getSuggestions()
+            .then((res)=> setUsers(res.data))
+            .catch(console.error);
+        },[])
+  return(
     <div className='p-3'>
         <div className='d-flex align-items-centre justify-content-between mb-4'>
             <div className='d-flex align-items-center'>
