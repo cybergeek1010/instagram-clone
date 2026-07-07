@@ -7,12 +7,16 @@ const postRoutes = require("./routes/postroutes.js")
 const storyRoutes = require("./routes/storyroutes");
 const suggestionRoutes = require("./routes/suggestionroutes.js");
 const suggestion = require("./models/suggestion.js");
+const userRoutes = require("./routes/userroutes.js")
 app.use(cors());
 app.use(express.json());
+app.use(userRoutes)
 app.use(postRoutes)
 app.use("/stories",storyRoutes)
 app.use("/suggestions",suggestionRoutes)
+
 mongoose.connect(process.env.MONGO_URI)
+
 .then(()=>{
     console.log("database connected");
 })
