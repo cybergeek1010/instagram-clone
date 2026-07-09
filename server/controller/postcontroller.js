@@ -1,4 +1,5 @@
 const Post = require("../models/posts.js");
+const User = require("../models/users");
 exports.getPosts = async(req,res)=>{
         try{
             const posts = await Post.find();
@@ -39,10 +40,12 @@ exports.addComment=async(req,res)=>{
 
 exports.createPost = async (req,res)=>{
     try{
-        const{ username,profileImage,postImage,caption}=req.body;
+        const user = await User.findById(req.user.id);
+        const{postImage,caption}=req.body;
+        console.log(req.user)
         const newPost= await Post.create({
-            username,
-            profileImage,
+            username: req.user.username,
+            profileImage:user.profileImage,
             postImage,
             caption
         });
