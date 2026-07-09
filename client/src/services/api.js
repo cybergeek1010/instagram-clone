@@ -4,8 +4,15 @@ const API = axios.create({
     baseURL:"http://localhost:5000"
 });
 export const getPosts=()=>API.get("/posts");
-export const createPost =(data)=>
-     API.post("create-post",data);
+export const createPost =(data)=>{
+    const token=localStorage.getItem("token");
+    return API.post("create-post",
+        data,{
+            headers:{
+                Authorization:token
+            }
+        });
+}
 export const getStories=()=>API.get("/stories");
 export const getSuggestions=()=>API.get("/suggestions");
 export const likePost =(id)=>API.put(`/posts/${id}/like`);

@@ -10,13 +10,10 @@ function Login() {
         try{
             const data = {
                 email,
-                password,
+                password
             };
             const res = await loginUser(data);
-            localStorage.setItem(
-                "user",
-                JSON.stringify(res.data.user)
-            );
+            localStorage.setItem("token",res.data.token)
             if(res.data.message ==="login succesfull"){
                 navigate("/")
             }

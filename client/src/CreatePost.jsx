@@ -10,8 +10,6 @@ function CreatePost({setPosts}) {
     const handlecreatepost = async()=>{
         try{
             const data={
-                username,
-                profileImage,
                 postImage,
                 caption,
             };
@@ -36,7 +34,7 @@ function CreatePost({setPosts}) {
         borderRadius:"10px",
     }}>
         <h3>Create New Post</h3>
-        <input type="text"
+        {/* <input type="text"
          placeholder="Username"
          value={username}
          onChange={(e)=>setUsername(e.target.value)} />
@@ -46,7 +44,7 @@ function CreatePost({setPosts}) {
          placeholder="profile image url"
          value={profileImage}
          onChange={(e)=>setProfileImage(e.target.value)} />
-        <br /><br />
+        <br /><br /> */}
 
         <input type="text"
          placeholder="post image url"
