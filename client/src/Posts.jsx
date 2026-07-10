@@ -1,16 +1,22 @@
 import React,{useEffect,useState}from 'react'
 import{getPosts,likePost,addComment} from "./services/api";
+import {jwtDecode} from "jwt-decode";
+import { deletePost } from './services/api';
 
 function Posts({posts,setPosts}) {
     // const[posts,setPosts]=useState([]);
-    const[likedposts,setLikedPosts]=useState([]);
+    // const[likedposts,setLikedPosts]=useState([]);
     const[comment,setComment]=useState("");
+    const token = localStorage.getItem("token");
+    const user = jwtDecode(token);
     const handleLike=async(id)=>{
         try{
-            await likePost(id);
-            const res = await getPosts();
-            setPosts(res.data);
-            setLikedPosts((prev)=>[...prev,id])
+            const res= await likePost(id);
+            setPosts((prevPosts)=>
+                prevPosts.map((post)=>
+                post._id===id?res.data:post
+            )
+        );
         } catch(err){
             console.log(err);
         }
@@ -18,12 +24,21 @@ function Posts({posts,setPosts}) {
     const handleComment= async(id)=>{
         console.log("buttonclicked")
         await addComment(id,{
-            username:"arshad",
             text:comment,
         });
         getPosts().then((res)=>setPosts(res.data));
         setComment("");
     };
+
+    const handleDelete = async(id)=>{
+        try{
+            await deletePost(id);
+            const res = await getPosts();
+            setPosts(res.data);
+        }catch(err){
+            console.log(err);
+        }
+    }
 
     // useEffect(()=>{
     //     fetchPosts();
@@ -53,14 +68,14 @@ function Posts({posts,setPosts}) {
                         <img src={post.postImage} alt="" className='img-fluid' style={{width:"100%",height:"450px",objectFit:"cover"}} />
                          <div className="d-flex fs-4 mt-3 px-0 ">
 
-                            <i className={likedposts.includes(post._id)?"bi bi-heart-fill text-danger":"bi bi-heart"} onClick={()=>handleLike(post._id)}></i>
+                            <i className={post.likes.includes(user.id)?"bi bi-heart-fill text-danger":"bi bi-heart"} onClick={()=>handleLike(post._id)}></i>
 
                             <i className="bi bi-chat me-3"></i>
 
                             <i className="bi bi-send"></i>
                         </div>
                         <div>
-                            <p className='fw-bold mt-2 mb-1'> {post.likes} likes</p>
+                            <p className='fw-bold mt-2 mb-1'> {post.likes.length} likes</p>
                             <p className='mb-0'>{post.caption}</p>
                              {post.comments.map((comment,index)=>(
                                 <p key={index}>
@@ -70,6 +85,10 @@ function Posts({posts,setPosts}) {
                              ))}
                             <input type="text" placeholder='add a comment' value={comment} onChange={(e)=>setComment(e.target.value)}/>
                             <button onClick={()=>handleComment(post._id)} className='btn btn-primary'>Post</button>
+                            <button className='btn btn-danger btn-sm'
+                            onClick={()=>handleDelete(post._id)}>
+                                Delete
+                            </button>
                         </div>
                         
 </div>

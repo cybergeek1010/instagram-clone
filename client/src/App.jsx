@@ -8,6 +8,9 @@
 import {Routes,Route} from 'react-router-dom';
 import Login from './Login'
 import Home from"./Home";
+import Register from './Register';
+import Profile from "./Profile";
+
 
 
 function App() {
@@ -15,6 +18,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
+      <Route path="/profile" element={<Profile/>}/>
+      <Route path="/profile/:id" element={<Profile/>}/>
+
     </Routes>
   )
 }

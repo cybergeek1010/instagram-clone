@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose=require("mongoose");
 const cors = require("cors");
+const userRoutes = require("./routes/userroutes.js");
 require("dotenv").config()
 const app = express();
 const Post=require("./models/posts.js")
@@ -8,6 +9,7 @@ const postRoutes = require("./routes/postroutes.js")
 app.use(cors());
 app.use(express.json());
 app.use(postRoutes)
+app.use("/",userRoutes);
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("database connected");

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Sidebar() {
   return (
@@ -12,7 +13,7 @@ function Sidebar() {
             <div className=''><i class="bi bi-send-fill"></i> Messages</div>
             <div className=''><i class="bi bi-bell"></i>Notifications</div>
             <div className=''><i class="bi bi-plus-square"></i>Create</div>
-            <div className=''><i class="bi bi-person-circle"></i>Profile</div>
+            <div className=''><i class="bi bi-person-circle"></i> <Link to="/profile">Profile</Link></div>
         </div>
 
         <div  className='position-fixed bottom-0 d-flex flex-column gap-3 mb-3'>
