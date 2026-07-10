@@ -18,7 +18,19 @@ const userSchema = new mongoose.Schema(
         profileImage:{
             type:String,
             default:"https://i.pravatar.cc/150"
-        }
+        },
+        bio:{
+            type:String,
+            default:""
+        },
+        followers:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User"
+        }],
+        following:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User"
+        }]
 
     },
     {
