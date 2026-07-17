@@ -118,7 +118,7 @@ exports.getUserProfile = async(req,res)=>{
     }
 
  }
- exports.getUserposts= async(req,res)=>{
+ exports.getUserPosts= async(req,res)=>{
     try{
         const posts = await Post.find({
             user:req.params.id
